@@ -9,6 +9,9 @@ const { syncDatabase } = require('./db/db');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const specialismsRouter = require('./routes/specialisms');
+const cohortsRouter = require('./routes/cohorts');
+const studentsRouter = require('./routes/students');
 
 var app = express();
 
@@ -27,6 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/specialisms', specialismsRouter);
+app.use('/cohorts', cohortsRouter);
+app.use('/students', studentsRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // catch 404 and forward to error handler

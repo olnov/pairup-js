@@ -52,4 +52,4 @@ const Cohort = sequelize.define('Cohort', {
 Cohort.hasMany(Specialism, {foreignKey: 'specialism_id'});
 Cohort.belongsTo(Specialism, {foreignKey: 'specialism_id'});
 
-module.exports = Student;
+module.exports = Cohort;
