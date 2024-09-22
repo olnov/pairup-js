@@ -12,6 +12,9 @@ var usersRouter = require('./routes/users');
 const specialismsRouter = require('./routes/specialisms');
 const cohortsRouter = require('./routes/cohorts');
 const studentsRouter = require('./routes/students');
+const authRouter = require('./routes/auth');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 var app = express();
 
@@ -22,6 +25,8 @@ syncDatabase(false);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
+app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,6 +38,7 @@ app.use('/users', usersRouter);
 app.use('/specialisms', specialismsRouter);
 app.use('/cohorts', cohortsRouter);
 app.use('/students', studentsRouter);
+app.use('/auth', authRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // catch 404 and forward to error handler
