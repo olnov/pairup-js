@@ -1,22 +1,10 @@
 import Box from '@mui/material/Box';
-import Logo from '../assets/Logo-GR.png';
 import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
-import SchoolIcon from '@mui/icons-material/School';
-import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import GroupsIcon from '@mui/icons-material/Groups';
-import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 
 const drawerWidth = 240;
@@ -39,65 +27,7 @@ const DashBoard: React.FC = () => {
                     </Toolbar> */}
                     <AccountCircle />
                 </AppBar>
-                <Drawer
-                    sx={{
-                        width: drawerWidth,
-                        flexShrink: 0,
-                        '& .MuiDrawer-paper': {
-                            width: drawerWidth,
-                            boxSizing: 'border-box',
-                        },
-                    }}
-                    variant="permanent"
-                    anchor="left"
-                >   
-                    <center>
-                        <img src={Logo} alt="Logo" height="56" width="137"/>
-                    </center>
-                    <List>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <PersonOutlineRoundedIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="System users" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <SchoolIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Students" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <LocalLibraryIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Specialisms" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <GroupsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Cohorts" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <IntegrationInstructionsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Integrations" />
-                            </ListItemButton>
-                        </ListItem>
-                    </List>
-                    {/* <Divider /> */}
-                </Drawer>
+                <Sidebar />
                 <Box
                     component="main"
                     sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
