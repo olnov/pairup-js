@@ -20,4 +20,6 @@ const Specialism = sequelize.define('Specialism', {
     timestamps: false,
 });
 
+Specialism.hasMany(Specialism, {foreignKey: 'specialism_id'});
+
 module.exports = Specialism;

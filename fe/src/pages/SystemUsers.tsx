@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createUser, getUsers } from "../services/UsersService";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -47,22 +47,21 @@ const SystemUsers: React.FC = () => {
         await createUser(token as string, email as string, password as string, full_name as string);
     }
 
-
     return (
         <Box sx={{ display: 'flex' }}>
             <Sidebar />
             <Box
                 component="main"
-                sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+                sx={{ flexGrow: 1,  p: 3 }}
             >
                 <h2>Portal users</h2>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 750 }} aria-label="Portal users">
+                    <Table sx={{ minWidth: 850 }} aria-label="Portal users">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Full name</TableCell>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Actions</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold' }}>Full Name</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold' }}>Email</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold' }}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -71,7 +70,7 @@ const SystemUsers: React.FC = () => {
                                     key={user.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell component="th" scope="row">
+                                    <TableCell>
                                         {user.full_name}
                                     </TableCell>
                                     <TableCell>{user.email}</TableCell>

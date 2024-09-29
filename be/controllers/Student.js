@@ -5,15 +5,17 @@ const Cohort = require("../models/Cohort");
 exports.createNewStudent = async (req,res) => {
     try {
         const { full_name, email, skill_level, cohort_id } = req.body;
-        const cohort = Cohort.findByPk(cohort_id);
+        console.log(req.body);
+        const cohort = await Cohort.findByPk(cohort_id);
+        console.log(cohort);
         if (!cohort) {
             return res.status(404).json({ message: 'Cohort not found. '});
         }
-        const newStudent = Student.findOne({ where: {email}});
-        if (newStudent) {
+        const existingStudent = await Student.findOne({ where: {email}});
+        if (existingStudent) {
             return res.status(409).json({ message: 'Email already registerd.'});
         }
-        await newStudent.create({
+        const newStudent = await Student.create({
             full_name,
             email,
             skill_level,

@@ -16,7 +16,7 @@ const Cohort = sequelize.define('Cohort', {
         type: DataTypes.DATE,
         allowNull: false,
         get() {
-            const rawDate = this.getDataValue('registred_at');
+            const rawDate = this.getDataValue('date_start');
             return rawDate ? rawDate.toISOString().split('T')[0] : null;
           },
     },
@@ -24,7 +24,7 @@ const Cohort = sequelize.define('Cohort', {
         type: DataTypes.DATE,
         allowNull: false,
         get() {
-            const rawDate = this.getDataValue('registred_at');
+            const rawDate = this.getDataValue('date_end');
             return rawDate ? rawDate.toISOString().split('T')[0] : null;
           },
     },
@@ -36,20 +36,19 @@ const Cohort = sequelize.define('Cohort', {
             key:'id'
         }
     },
-    registred_at: {
+    registered_at: {
         type: DataTypes.DATE,
         allowNull: false,
         get() {
-            const rawDate = this.getDataValue('registred_at');
+            const rawDate = this.getDataValue('registered_at');
             return rawDate ? rawDate.toISOString().split('T')[0] : null;
           },
     }
 }, {
-    tableName: 'cohorts ',
+    tableName: 'cohorts',
     timestamps: false,
 });
 
-Cohort.hasMany(Specialism, {foreignKey: 'specialism_id'});
 Cohort.belongsTo(Specialism, {foreignKey: 'specialism_id'});
 
 module.exports = Cohort;

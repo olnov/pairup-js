@@ -25,8 +25,30 @@ exports.createNewCohort = async (req, res)=> {
 // Get all cohorts
 exports.getAllCohorts = async (req, res)=> {
     try {
-        const cohorts = await Cohort.findAll();
-        res.status(200).json(cohorts);
+        const cohorts = await Cohort.findAll({
+            include: [
+                {
+                    model: Specialism,
+                    attributes: ['title', 'stack'],
+                }
+            ]
+        });
+
+        // Modify the response to include the specialism title and stack
+        const cohortsWithDetails = cohorts.map(cohort => {
+            const specialism = cohort.Specialism;
+            
+            return {
+                id: cohort.id,
+                title: cohort.title,
+                date_start: cohort.date_start,
+                date_end: cohort.date_end,
+                specialism_title: specialism ? specialism.title : null,
+                specialism_stack: specialism ? specialism.stack : null,
+            } 
+        });
+
+        res.status(200).json(cohortsWithDetails);
     }catch(error){
         res.status(500).json({ message: 'Error retreiving cohorts:', error: error.message});
     };
