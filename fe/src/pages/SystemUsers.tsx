@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import Sidebar from "../components/Sidebar/Sidebar";
 import { useState, useEffect } from "react";
-import { createUser, getUsers } from "../services/UsersService";
+import { createUser, getUsers, deleteUser } from "../services/UsersService";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -28,7 +28,7 @@ const SystemUsers: React.FC = () => {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [users]);
 
     const fetchUsers = async () => {
         const portalUsers = await getUsers(token as string);
@@ -45,6 +45,10 @@ const SystemUsers: React.FC = () => {
 
     const handleAddUser = async () => {
         await createUser(token as string, email as string, password as string, full_name as string);
+    }
+
+    const handleDeleteUser = async (id: string) => {
+        await deleteUser(token as string, id);
     }
 
     return (
@@ -79,7 +83,7 @@ const SystemUsers: React.FC = () => {
                                             Edit
                                         </Button>
                                         &nbsp;|&nbsp;
-                                        <Button variant="text" color="secondary">
+                                        <Button variant="text" color="secondary" onClick={() => handleDeleteUser(user.id)}>
                                             Delete
                                         </Button>
                                     </TableCell>

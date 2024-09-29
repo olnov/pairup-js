@@ -38,4 +38,19 @@ export const createUser = async (token:String, email:String, password:String, fu
     };
 };
 
+export const deleteUser = async (token:String, userId:String) => {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    };
+    const response = await fetch(`${BACKEND_URL}/users/${userId}`, requestOptions);
+    if (response.status === 204) {
+        return true;
+    }else{
+        throw new Error(`Error: ${response.status}`);
+    }
+}
+
 
