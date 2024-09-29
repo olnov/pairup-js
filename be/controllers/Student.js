@@ -31,8 +31,29 @@ exports.createNewStudent = async (req,res) => {
 // Get all students
 exports.getAllStudents = async (req, res)=> {
     try {
-        const students = await Student.findAll();
-        res.status(200).json(students)
+        const students = await Student.findAll({
+            include: [
+                {
+                    model: Cohort,
+                    attributes: ['title', 'date_start', 'date_end']
+                }
+            ]
+        });
+
+        // Modify the response to include the cohort title, date_start and date_end
+        const studentsWithDetails = students.map(student => {
+            const cohort = student.Cohort;
+            return {
+                id: student.id,
+                full_name: student.full_name,
+                email: student.email,
+                skill_level: student.skill_level,
+                cohort_title: cohort ? cohort.title : null,
+                cohort_date_start: cohort ? cohort.date_start : null,
+                cohort_date_end: cohort ? cohort.date_end : null,
+            }
+        });
+        res.status(200).json(studentsWithDetails)
     }catch(error){
         res.status(500).json({ message: 'Error retreieing student.', error:error.message})
     }

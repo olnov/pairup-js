@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import Sidebar from "../components/Sidebar/Sidebar";
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getStudents } from "../services/StudentsService";
 
 
@@ -15,14 +15,14 @@ const Students = () => {
     const [open, setOpen] = useState(false);
     const token = localStorage.getItem("token");
 
-const fetchStudents = async () => {
-    const students = await getStudents(token as string);
-    setStudents(students);
-}
+    const fetchStudents = async () => {
+        const students = await getStudents(token as string);
+        setStudents(students);
+    }
 
-useEffect(() => {
-    fetchStudents();
-},[]);
+    useEffect(() => {
+        fetchStudents();
+    }, []);
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -51,13 +51,21 @@ useEffect(() => {
                                     <TableCell>{student.email}</TableCell>
                                     <TableCell>{student.skill_level}</TableCell>
                                     <TableCell>{student.groups}</TableCell>
-                                    <TableCell>{student.cohort_id}</TableCell>
+                                    <TableCell>{student.cohort_title}</TableCell>
                                     <TableCell>
                                         <Button variant="text">Edit</Button>
                                         <Button variant="text">Delete</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
+                            <TableRow>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell><Button variant="contained" color="primary">Add Student</Button></TableCell>
+                            </TableRow>
                         </TableBody>
                     </Table>
                 </TableContainer>
