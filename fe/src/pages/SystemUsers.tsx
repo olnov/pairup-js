@@ -45,6 +45,7 @@ const SystemUsers: React.FC = () => {
 
     const handleAddUser = async () => {
         await createUser(token as string, email as string, password as string, full_name as string);
+        window.location.reload();
     }
 
     const handleDeleteUser = async (id: string) => {
@@ -57,6 +58,7 @@ const SystemUsers: React.FC = () => {
             <Box
                 component="main"
                 sx={{ flexGrow: 1,  p: 3 }}
+                width={"150vh"}
             >
                 <h2>Portal users</h2>
                 <TableContainer component={Paper}>

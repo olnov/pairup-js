@@ -7,7 +7,8 @@ const Integrations = () => {
             <Sidebar />
             <Box
                 component="main"
-                sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+                sx={{ flexGrow: 1, p: 3 }}
+                width={"150vh"}
             >
                 <h1>Integrations</h1>
             </Box>

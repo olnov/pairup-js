@@ -8,6 +8,7 @@ import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
 import SchoolIcon from '@mui/icons-material/School';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import GroupsIcon from '@mui/icons-material/Groups';
+import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import Logo from '../../assets/Logo-GR.png';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +40,14 @@ const Sidebar: React.FC = () => {
                                     <PersonOutlineRoundedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="System users" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton onClick={()=>{navigate("/groups")}}>
+                                <ListItemIcon>
+                                    <WorkspacesIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Groups" />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>

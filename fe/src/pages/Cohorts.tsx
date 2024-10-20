@@ -25,6 +25,7 @@ const Cohorts = () => {
         console.log("Adding cohort:");
         console.log(title, date_start, date_end, specialism_id);
         await createCohort(token as string, title, specialism_id, date_start, date_end);
+        window.location.reload();
     }
 
     const fetchSpecialisms = async () => {
@@ -51,6 +52,7 @@ const Cohorts = () => {
             <Box
                 component="main"
                 sx={{ flexGrow: 1, p: 3 }}
+                width={"150vh"}
             >
                 <h2>Cohorts</h2>
                 <TableContainer component={Paper}>

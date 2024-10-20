@@ -44,6 +44,7 @@ const Students = () => {
         console.log("Adding student:");
         console.log(fullName, email, skillLevel, cohort_id);
         await createStudent(token as string, fullName, email, skillLevel, cohort_id);
+        window.location.reload();
     };
 
     return (
@@ -52,6 +53,7 @@ const Students = () => {
             <Box
                 component="main"
                 sx={{ flexGrow: 1, p: 3 }}
+                width={"150vh"}
             >
                 <h2>Students</h2>
                 <TableContainer component={Paper}>

@@ -26,6 +26,7 @@ const Specialisms = () => {
 
     const handleAddSpecialism = async () => {
         await createSpecialism(token as string, title, stack);
+        window.location.reload();
     };
 
     useEffect(()=> {
@@ -38,6 +39,7 @@ const Specialisms = () => {
             <Box
                 component="main"
                 sx={{ flexGrow: 1, p: 3 }}
+                width={"150vh"}
             >
                 <h2>Specialisms</h2>
                 <TableContainer component={Paper}>
